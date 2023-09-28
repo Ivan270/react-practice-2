@@ -23,8 +23,21 @@ function App() {
 			setModalTitle('Invalid age');
 			setModalDescription('Please enter a valid age (>0).');
 		} else {
+			// const user = {
+			// 	...userInput,
+			// 	id: Math.random().toString(36).substring(2),
+			// };
+			// const array = [...users, user];
+			// setUsers(array);
 			setUsers((prevUsers) => {
-				return [...prevUsers, { username: uName, age: uAge }];
+				return [
+					...prevUsers,
+					{
+						username: uName,
+						age: uAge,
+						id: Math.random().toString(36).substring(2),
+					},
+				];
 			});
 		}
 	};
