@@ -5,30 +5,21 @@ import ErrorModal from './Components/ErrorModal/ErrorModal';
 
 function App() {
 	const [users, setUsers] = useState([]);
-	const [modalShow, setModalShow] = useState('none');
-	const [modalTitle, setModalTitle] = useState('Error');
-	const [modalDescription, setModalDescription] =
-		useState('Something happened');
+	const [error, setError] = useState();
 
 	const addUserHandler = (uName, uAge) => {
 		// Validation
 		if (uName === '' || uAge === '') {
-			setModalShow('block');
-			setModalTitle('Invalid Input');
-			setModalDescription(
-				'Please enter a valid name and age (non-empty values)'
-			);
-		} else if (uAge < 0) {
-			setModalShow('block');
-			setModalTitle('Invalid age');
-			setModalDescription('Please enter a valid age (>0).');
+			setError({
+				title: 'Invalid Input',
+				description: 'Please enter a valid name and age (non-empty values)',
+			});
+		} else if (uAge < 1) {
+			setError({
+				title: 'Invalid age',
+				description: 'Please enter a valid age (>0).',
+			});
 		} else {
-			// const user = {
-			// 	...userInput,
-			// 	id: Math.random().toString(36).substring(2),
-			// };
-			// const array = [...users, user];
-			// setUsers(array);
 			setUsers((prevUsers) => {
 				return [
 					...prevUsers,
@@ -42,8 +33,8 @@ function App() {
 		}
 	};
 
-	const dismissModal = (disp) => {
-		setModalShow(disp);
+	const dismissModal = () => {
+		setError(undefined);
 	};
 
 	let content = '';
@@ -53,12 +44,13 @@ function App() {
 
 	return (
 		<div>
-			<ErrorModal
-				title={modalTitle}
-				description={modalDescription}
-				onModalClick={dismissModal}
-				display={{ display: modalShow }}
-			/>
+			{error && (
+				<ErrorModal
+					title={error.title}
+					description={error.description}
+					onModalClick={dismissModal}
+				/>
+			)}
 			<AddUser onSubmitUser={addUserHandler} />
 			{/* Conditionally render list of users*/}
 			{content}
