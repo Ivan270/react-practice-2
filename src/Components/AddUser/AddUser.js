@@ -25,24 +25,22 @@ const AddUser = (props) => {
 		event.target.reset();
 	};
 	return (
-		<Card>
+		<Card className={styles.input}>
 			<form onSubmit={saveUserHandler}>
-				<div className={styles.input}>
-					<label htmlFor="username">Username</label>
-					<input
-						onChange={usernameChangeHandler}
-						value={userName}
-						id="username"
-					></input>
-					<label htmlFor="age">Age</label>
-					<input
-						onChange={ageChangeHandler}
-						value={userAge}
-						type="number"
-						id="age"
-					></input>
-					<Button>Add User</Button>
-				</div>
+				<label htmlFor="username">Username</label>
+				<input
+					onChange={usernameChangeHandler}
+					value={userName}
+					id="username"
+				></input>
+				<label htmlFor="age">Age</label>
+				<input
+					onChange={ageChangeHandler}
+					value={userAge}
+					type="number"
+					id="age"
+				></input>
+				<Button type="submit">Add User</Button>
 			</form>
 		</Card>
 	);

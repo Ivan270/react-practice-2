@@ -12,7 +12,6 @@ function App() {
 
 	const addUserHandler = (userInput) => {
 		// Validation
-		console.log(userInput);
 		if (userInput.username === '' || userInput.age === '') {
 			setModalShow('block');
 			setModalTitle('Invalid Input');
@@ -51,7 +50,7 @@ function App() {
 				display={{ display: modalShow }}
 			/>
 			<AddUser onSubmitUser={addUserHandler} />
-			{/* Conditional render*/}
+			{/* Conditionally render list of users*/}
 			{content}
 		</div>
 	);
