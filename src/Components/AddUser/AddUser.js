@@ -17,12 +17,9 @@ const AddUser = (props) => {
 
 	const saveUserHandler = (event) => {
 		event.preventDefault();
-		const newUser = {
-			username: userName,
-			age: userAge,
-		};
-		props.onSubmitUser(newUser);
-		event.target.reset();
+		props.onSubmitUser(userName, userAge);
+		setUserName('');
+		setUserAge('');
 	};
 	return (
 		<Card className={styles.input}>

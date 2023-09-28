@@ -10,25 +10,22 @@ function App() {
 	const [modalDescription, setModalDescription] =
 		useState('Something happened');
 
-	const addUserHandler = (userInput) => {
+	const addUserHandler = (uName, uAge) => {
 		// Validation
-		if (userInput.username === '' || userInput.age === '') {
+		if (uName === '' || uAge === '') {
 			setModalShow('block');
 			setModalTitle('Invalid Input');
 			setModalDescription(
 				'Please enter a valid name and age (non-empty values)'
 			);
-		} else if (userInput.age < 0) {
+		} else if (uAge < 0) {
 			setModalShow('block');
 			setModalTitle('Invalid age');
 			setModalDescription('Please enter a valid age (>0).');
 		} else {
-			const user = {
-				...userInput,
-				id: Math.random().toString(36).substring(2),
-			};
-			const array = [...users, user];
-			setUsers(array);
+			setUsers((prevUsers) => {
+				return [...prevUsers, { username: uName, age: uAge }];
+			});
 		}
 	};
 
