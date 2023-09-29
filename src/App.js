@@ -44,7 +44,7 @@ function App() {
 	}
 
 	return (
-		<Wrapper>
+		<>
 			{error && (
 				<ErrorModal
 					title={error.title}
@@ -55,7 +55,7 @@ function App() {
 			<AddUser onSubmitUser={addUserHandler} />
 			{/* Conditionally render list of users*/}
 			{content}
-		</Wrapper>
+		</>
 	);
 }
 
