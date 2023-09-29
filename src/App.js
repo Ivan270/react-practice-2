@@ -38,11 +38,6 @@ function App() {
 		setError(undefined);
 	};
 
-	let content = '';
-	if (users.length > 0) {
-		content = <UsersList data={users} />;
-	}
-
 	return (
 		<>
 			{error && (
@@ -54,7 +49,7 @@ function App() {
 			)}
 			<AddUser onSubmitUser={addUserHandler} />
 			{/* Conditionally render list of users*/}
-			{content}
+			{users.length > 0 && <UsersList data={users} />}
 		</>
 	);
 }
