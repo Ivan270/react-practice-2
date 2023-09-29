@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddUser from './Components/AddUser/AddUser';
 import UsersList from './Components/UserList/UsersList';
 import ErrorModal from './Components/ErrorModal/ErrorModal';
+import Wrapper from './Components/Helpers/Wrapper';
 
 function App() {
 	const [users, setUsers] = useState([]);
@@ -43,7 +44,7 @@ function App() {
 	}
 
 	return (
-		<div>
+		<Wrapper>
 			{error && (
 				<ErrorModal
 					title={error.title}
@@ -54,7 +55,7 @@ function App() {
 			<AddUser onSubmitUser={addUserHandler} />
 			{/* Conditionally render list of users*/}
 			{content}
-		</div>
+		</Wrapper>
 	);
 }
 
