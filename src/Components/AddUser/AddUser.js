@@ -5,7 +5,8 @@ import styles from './AddUser.module.css';
 import { useRef } from 'react';
 
 const AddUser = (props) => {
-	// useRef hook takes a default value for initialization, in this case is not needed, it returns a value. For this case, I will no longer need useState nor the change event handler for each keystroke
+	// useRef hook takes a default value for initialization, in this case is not needed, it returns a value. For this case, I will no longer need useState nor the change event handler for each keystroke.
+	// AKA 'Uncontrolled component' since React is not in control of the internal state
 	const nameInputRef = useRef();
 	const ageInputRef = useRef();
 
