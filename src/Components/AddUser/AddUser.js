@@ -2,41 +2,28 @@ import React from 'react';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
 import styles from './AddUser.module.css';
-import { useState } from 'react';
+import { useRef } from 'react';
 
 const AddUser = (props) => {
-	const [userName, setUserName] = useState('');
-	const [userAge, setUserAge] = useState('');
-
-	const usernameChangeHandler = (event) => {
-		setUserName(event.target.value);
-	};
-	const ageChangeHandler = (event) => {
-		setUserAge(event.target.value);
-	};
+	// useRef hook takes a default value for initialization, in this case is not needed, it returns a value. For this case, I will no longer need useState nor the change event handler for each keystroke
+	const nameInputRef = useRef();
+	const ageInputRef = useRef();
 
 	const saveUserHandler = (event) => {
 		event.preventDefault();
-		props.onSubmitUser(userName, userAge);
-		setUserName('');
-		setUserAge('');
+		const enteredName = nameInputRef.current.value;
+		const enteredAge = ageInputRef.current.value;
+		props.onSubmitUser(enteredName, enteredAge);
+		nameInputRef.current.value = '';
+		ageInputRef.current.value = '';
 	};
 	return (
 		<Card className={styles.input}>
 			<form onSubmit={saveUserHandler}>
 				<label htmlFor="username">Username</label>
-				<input
-					onChange={usernameChangeHandler}
-					value={userName}
-					id="username"
-				></input>
+				<input id="username" ref={nameInputRef}></input>
 				<label htmlFor="age">Age</label>
-				<input
-					onChange={ageChangeHandler}
-					value={userAge}
-					type="number"
-					id="age"
-				></input>
+				<input type="number" id="age" ref={ageInputRef}></input>
 				<Button type="submit">Add User</Button>
 			</form>
 		</Card>
